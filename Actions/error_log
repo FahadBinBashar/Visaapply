@@ -1,0 +1,26 @@
+[30-Dec-2023 20:11:27 Europe/Madrid] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'eshayata_admin'@'localhost' (using password: YES) in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/connection.php on line 8
+[30-Dec-2023 20:11:27 Europe/Madrid] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/register.php on line 17
+[30-Dec-2023 20:11:27 Europe/Madrid] PHP Warning:  mysqli::close(): Couldn't fetch mysqli in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/register.php on line 43
+[30-Dec-2023 20:11:39 Europe/Madrid] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'eshayata_admin'@'localhost' (using password: YES) in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/connection.php on line 8
+[30-Dec-2023 20:11:39 Europe/Madrid] PHP Warning:  mysqli_query(): Couldn't fetch mysqli in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/signin.php on line 9
+[30-Dec-2023 20:11:39 Europe/Madrid] PHP Notice:  Trying to get property 'num_rows' of non-object in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/signin.php on line 12
+[30-Dec-2023 20:11:39 Europe/Madrid] PHP Warning:  mysqli::close(): Couldn't fetch mysqli in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/signin.php on line 28
+[30-Dec-2023 20:11:58 Europe/Madrid] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'eshayata_admin'@'localhost' (using password: YES) in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/connection.php on line 8
+[30-Dec-2023 20:11:58 Europe/Madrid] PHP Warning:  mysqli_query(): Couldn't fetch mysqli in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/signin.php on line 9
+[30-Dec-2023 20:11:58 Europe/Madrid] PHP Notice:  Trying to get property 'num_rows' of non-object in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/signin.php on line 12
+[30-Dec-2023 20:11:58 Europe/Madrid] PHP Warning:  mysqli::close(): Couldn't fetch mysqli in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/signin.php on line 28
+[30-Dec-2023 20:22:02 Europe/Madrid] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'eshayata_admin'@'localhost' (using password: YES) in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/connection.php on line 8
+[30-Dec-2023 20:22:02 Europe/Madrid] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/register.php on line 17
+[30-Dec-2023 20:22:02 Europe/Madrid] PHP Warning:  mysqli::close(): Couldn't fetch mysqli in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/register.php on line 43
+[30-Dec-2023 20:22:19 Europe/Madrid] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'eshayata_admin'@'localhost' (using password: YES) in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/connection.php on line 8
+[30-Dec-2023 20:22:19 Europe/Madrid] PHP Warning:  mysqli_query(): Couldn't fetch mysqli in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/signin.php on line 9
+[30-Dec-2023 20:22:19 Europe/Madrid] PHP Notice:  Trying to get property 'num_rows' of non-object in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/signin.php on line 12
+[30-Dec-2023 20:22:19 Europe/Madrid] PHP Warning:  mysqli::close(): Couldn't fetch mysqli in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/signin.php on line 28
+[30-Dec-2023 20:22:31 Europe/Madrid] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'eshayata_admin'@'localhost' (using password: YES) in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/connection.php on line 8
+[30-Dec-2023 20:22:31 Europe/Madrid] PHP Warning:  mysqli_query(): Couldn't fetch mysqli in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/signin.php on line 9
+[30-Dec-2023 20:22:31 Europe/Madrid] PHP Notice:  Trying to get property 'num_rows' of non-object in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/signin.php on line 12
+[30-Dec-2023 20:22:31 Europe/Madrid] PHP Warning:  mysqli::close(): Couldn't fetch mysqli in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/signin.php on line 28
+[30-Dec-2023 20:22:38 Europe/Madrid] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'eshayata_admin'@'localhost' (using password: YES) in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/connection.php on line 8
+[30-Dec-2023 20:22:38 Europe/Madrid] PHP Warning:  mysqli_query(): Couldn't fetch mysqli in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/signin.php on line 9
+[30-Dec-2023 20:22:38 Europe/Madrid] PHP Notice:  Trying to get property 'num_rows' of non-object in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/signin.php on line 12
+[30-Dec-2023 20:22:38 Europe/Madrid] PHP Warning:  mysqli::close(): Couldn't fetch mysqli in /home2/eshayata/public_html/portal.eshayatabroad.com/Actions/signin.php on line 28
