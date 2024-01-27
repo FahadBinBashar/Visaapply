@@ -4,6 +4,7 @@ $rdate = date("d-m-Y");
 session_start();
 if ($_SESSION['loginuser'] == true) {
     include 'connection.php';
+    $valid['success'] = array('success' => false, 'messages' => array());
     $did = $_SESSION['loginuser'];
     $status = 'Pending';
     // Array to store file names
@@ -37,12 +38,16 @@ if ($_SESSION['loginuser'] == true) {
     $sql = "INSERT INTO visa (cid, filename, status, rdate) VALUES ('$did','$insertValuesSQL','$status','$rdate')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Files are uploaded successfully.";
+        $valid['success'] = true;
+        $valid['messages'] = "Files are uploaded successfully.";
+        $_SESSION['upload_success'] = true; // Set session variable
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        $valid['success'] = false;
+        $valid['messages'] = "Error: " . $sql . "<br>" . $conn->error;
     }
-    header("Location: ../visa.php");
+   
     // Close connection
     $conn->close();
 }
+header("Location: ../visa.php");
 ?>

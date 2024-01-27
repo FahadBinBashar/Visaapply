@@ -93,6 +93,15 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         .form-btn:hover {
             background-color: #f0a506;
         }
+        .success-message {
+          background-color: #4CAF50;
+          color: #fff;
+          padding: 10px;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          text-align: center;
+          display: none; /* initially hide the message */
+        }
 </style>
 <body class="w3-light-grey">
 
@@ -141,6 +150,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
  <div class="w3-row-padding w3-margin-bottom">
     <div class="form-container">
+    <?php if (isset($_SESSION['upload_success']) && $_SESSION['upload_success'] === true) {
+        echo '<div id="successMessage" class="success-message">Files are uploaded successfully.</div>';
+        // Unset the session variable to avoid displaying the message again on page refresh
+        unset($_SESSION['upload_success']);
+        }?>
         <form action="Actions/renewalform.php" method="post" enctype="multipart/form-data">
             <div class="form-grid">
                 <div class="form-group">
@@ -153,31 +167,31 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                 </div>
                 <div class="form-group">
                     <label for="passport" class="form-label">A copy of your valid passport </label>
-                    <input type="file" name="passport" accept=".pdf" required>
+                    <input type="file" name="passport" accept=".pdf, .jpg, .jpeg, .png, .svg" required>
                 </div>
                 <div class="form-group">
                     <label for="residence" class="form-label">A copy of current residence card</label>
-                    <input type="file" name="residence" accept=".pdf" required>
+                    <input type="file" name="residence" accept=".pdf, .jpg, .jpeg, .png, .svg" required>
                 </div>
                 <div class="form-group">
                     <label for="past" class="form-label">Proof of enrollment in past academical year</label>
-                    <input type="file" name="past" accept=".pdf" required>
+                    <input type="file" name="past" accept=".pdf, .jpg, .jpeg, .png, .svg" required>
                 </div>
                 <div class="form-group">
                     <label for="current" class="form-label">Proof of enrollment in current academical year</label>
-                    <input type="file" name="current" accept=".pdf" required>
+                    <input type="file" name="current" accept=".pdf, .jpg, .jpeg, .png, .svg" required>
                 </div>
                 <div class="form-group">
                     <label for="domiciliation" class="form-label">Domiciliation (empadronamiento) in your current address</label>
-                    <input type="file" name="domiciliation" accept=".pdf" required>
+                    <input type="file" name="domiciliation" accept=".pdf, .jpg, .jpeg, .png, .svg" required>
                 </div>
                 <div class="form-group">
                     <label for="accommodation" class="form-label">Accommodation contract in your current address</label>
-                    <input type="file" name="accommodation" accept=".pdf" required>
+                    <input type="file" name="accommodation" accept=".pdf, .jpg, .jpeg, .png, .svg" required>
                 </div>
                 <div class="form-group">
                     <label for="insurance" class="form-label">A copy of your health insurance contract</label>
-                    <input type="file" name="insurance" accept=".pdf" required>
+                    <input type="file" name="insurance" accept=".pdf, .jpg, .jpeg, .png, .svg" required>
                     <p><b>This can be public or private health insurance, providing total health coverage and with an authorization to operate in Spain. The insurance needs to be valid throughout the period of the requested extension of the residence card. </b></p>
                 </div>
             </div>
@@ -218,7 +232,21 @@ function w3_close() {
     overlayBg.style.display = "none";
 }
 </script>
+<script>
+    // Function to show the success message
+    function showSuccessMessage() {
+      var successMessage = document.getElementById('successMessage');
+      successMessage.style.display = 'block';
 
+      // Set a timeout to hide the message after 10 seconds (10000 milliseconds)
+      setTimeout(function () {
+        successMessage.style.display = 'none';
+      }, 5000);
+    }
+
+    // Call the function when the page loads
+    window.onload = showSuccessMessage;
+  </script>
 </body>
 </html>
 <?php

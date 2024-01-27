@@ -165,6 +165,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         </thead>
         <tbody>
         <?php
+    // Research
+    $sqlr = "SELECT research.rid, research.rdate, research.status, users.name
+    FROM research
+    INNER JOIN users ON research.cid = users.id";
+    $resultr = $conn->query($sqlr);
     if ($resultr->num_rows > 0) {
     // output data of each row
         while($row = $resultr->fetch_assoc()) {
@@ -176,7 +181,16 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       //echo "<td>Research Educational Journey</td>";
       echo "<td>".$row['name']."</td>";
       echo "<td>".$row['rdate']."</td>";
-      echo "<td>".$row['status']."</td>";
+      ?>
+      <td>
+        <select class="status-dropdown" data-id="<?php echo $row['rid']; ?>">
+          <option value="Pending" <?php echo ($row['status'] === 'Pending') ? 'selected' : ''; ?>>Pending</option>
+          <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
+          <option value="Rejected" <?php echo ($row['status'] === 'Rejected') ? 'selected' : ''; ?>>Rejected</option>
+        </select>
+      </td>
+
+      <?php
         echo "<td><center><form action=showresearch.php target=_blank>
       <input name=id type=hidden value='".$row['rid']."'> <center><input type=image src=img/views.png alt=Submit width=25 height=13 style = margin-top:15px;></form></center></td>";
       
@@ -722,7 +736,41 @@ $(document).ready(function() {
     } );
 } );
  </script>
+<script>
+  $(document).ready(function() {
+    // Handle change event of the status dropdown
+    $('.status-dropdown').on('change', function() {
+      var status = $(this).val();
+      var id = $(this).data('id');
 
+      // Reference to the current select element
+      var $select = $(this);
+
+      // Send an AJAX request to update the status
+      $.ajax({
+        url: 'actions/updateStatus.php', // Replace with your backend endpoint
+        method: 'POST',
+        data: { id: id, status: status },
+        success: function(response) {
+          // Parse the JSON response
+          var data = JSON.parse(response);
+
+          // Display a message based on the success status
+          if (data.success) {
+            alert(data.message);
+            // Optionally, update the selected option in the dropdown
+            // $select.val(status);
+          } else {
+            alert(data.message);
+          }
+        },
+        error: function(error) {
+          console.error('Error updating status:', error);
+        }
+      });
+    });
+  });
+</script>
 
 <?php
 }

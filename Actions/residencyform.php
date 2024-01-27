@@ -4,6 +4,7 @@ $rdate = date("d-m-Y");
 session_start();
 if ($_SESSION['loginuser'] == true) {
     include 'connection.php';
+    $valid['success'] = array('success' => false, 'messages' => array());
     $did = $_SESSION['loginuser'];
     $choice = $_POST['choice'];
     $start = $_POST['start'];
@@ -40,12 +41,16 @@ if ($_SESSION['loginuser'] == true) {
     $sql = "INSERT INTO residency (cid, choice, start, expiry, filename, status, rdate) VALUES ('$did','$choice','$start','$expiry','$insertValuesSQL','$status','$rdate')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Files are uploaded successfully.";
+        $valid['success'] = true;
+        $valid['messages'] = "Files are uploaded successfully.";
+        $_SESSION['upload_success'] = true; // Set session variable
     } else { 
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        $valid['success'] = false;
+        $valid['messages'] = "Error: " . $sql . "<br>" . $conn->error;
     }
-    header("Location: ../residency.php");
+    
     // Close connection
     $conn->close();
 }
+header("Location: ../residency.php");
 ?>
