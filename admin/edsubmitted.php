@@ -183,7 +183,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       echo "<td>".$row['rdate']."</td>";
       ?>
       <td>
-        <select class="status-dropdown" data-id="<?php echo $row['rid']; ?>">
+        <select class="status-dropdown" data-research-id="<?php echo $row['rid']; ?>">
           <option value="Pending" <?php echo ($row['status'] === 'Pending') ? 'selected' : ''; ?>>Pending</option>
           <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
           <option value="Rejected" <?php echo ($row['status'] === 'Rejected') ? 'selected' : ''; ?>>Rejected</option>
@@ -299,7 +299,16 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       //echo "<td>Academic Institution of Choice</td>";
       echo "<td>".$row['name']."</td>";
       echo "<td>".$row['rdate']."</td>";
-      echo "<td>".$row['status']."</td>";
+      ?>
+      <td>
+        <select class="status-dropdown" data-institute-id="<?php echo $row['iid']; ?>">
+          <option value="Pending" <?php echo ($row['status'] === 'Pending') ? 'selected' : ''; ?>>Pending</option>
+          <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
+          <option value="Rejected" <?php echo ($row['status'] === 'Rejected') ? 'selected' : ''; ?>>Rejected</option>
+        </select>
+      </td>
+
+      <?php
         echo "<td><center><form action=showinstitution.php target=_blank>
       <input name=id type=hidden value='".$row['iid']."'> <center><input type=image src=img/views.png alt=Submit width=25 height=13 style = margin-top:15px;></form></center></td>";
       
@@ -409,7 +418,16 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       //echo "<td>Recognition/Homologation of Degree</td>";
       echo "<td>".$row['name']."</td>";
       echo "<td>".$row['rdate']."</td>";
-      echo "<td>".$row['status']."</td>";
+      ?>
+      <td>
+        <select class="status-dropdown" data-recongnition-id="<?php echo $row['rid']; ?>">
+          <option value="Pending" <?php echo ($row['status'] === 'Pending') ? 'selected' : ''; ?>>Pending</option>
+          <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
+          <option value="Rejected" <?php echo ($row['status'] === 'Rejected') ? 'selected' : ''; ?>>Rejected</option>
+        </select>
+      </td>
+
+      <?php
         echo "<td><center><form action=showrecognition.php target=_blank>
       <input name=id type=hidden value='".$row['rid']."'> <center><input type=image src=img/views.png alt=Submit width=25 height=13 style = margin-top:15px;></form></center></td>";
       
@@ -518,7 +536,16 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       echo "<td>".$row['name']."</td>";
       echo "<td>".$row['subject']."</td>";
       echo "<td>".$row['rdate']."</td>";
-      echo "<td>".$row['status']."</td>";
+      ?>
+      <td>
+        <select class="status-dropdown" data-support-id="<?php echo $row['sid']; ?>">
+          <option value="Pending" <?php echo ($row['status'] === 'Pending') ? 'selected' : ''; ?>>Pending</option>
+          <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
+          <option value="Rejected" <?php echo ($row['status'] === 'Rejected') ? 'selected' : ''; ?>>Rejected</option>
+        </select>
+      </td>
+
+      <?php
       
         echo "<td><center>
         <input type=image src=img/deletes.png data-toggle=modal data-target=#removesupModal data-whatever='".$row['sid']."' data-name='".$row['name']."'  width=30 height=30></center></td>";
@@ -740,8 +767,17 @@ $(document).ready(function() {
   $(document).ready(function() {
     // Handle change event of the status dropdown
     $('.status-dropdown').on('change', function() {
+      // var researchid = 0;
+      // var instituteid = 0;
+      // var supportid = 0;
+      // var supportid = 0;
       var status = $(this).val();
-      var id = $(this).data('id');
+      var researchid = $(this).data('research-id') || 0;
+      var instituteid = $(this).data('institute-id') || 0;
+      var recongnitionid = $(this).data('recongnition-id') || 0;
+      var supportid = $(this).data('support-id') || 0; 
+      
+      
 
       // Reference to the current select element
       var $select = $(this);
@@ -750,7 +786,7 @@ $(document).ready(function() {
       $.ajax({
         url: 'actions/updateStatus.php', // Replace with your backend endpoint
         method: 'POST',
-        data: { id: id, status: status },
+        data: { researchid: researchid, instituteid: instituteid, recongnitionid: recongnitionid, supportid: supportid, status: status },
         success: function(response) {
           // Parse the JSON response
           var data = JSON.parse(response);
