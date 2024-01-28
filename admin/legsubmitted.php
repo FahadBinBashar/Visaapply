@@ -183,7 +183,16 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
      // echo "<td>Visa Appointment</td>";
       echo "<td>".$row['name']."</td>";
       echo "<td>".$row['rdate']."</td>";
-      echo "<td>".$row['status']."</td>";
+      ?>
+      <td>
+        <select class="status-dropdown" data-visa-id="<?php echo $row['vid']; ?>">
+          <option value="Pending" <?php echo ($row['status'] === 'Pending') ? 'selected' : ''; ?>>Pending</option>
+          <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
+          <option value="Rejected" <?php echo ($row['status'] === 'Rejected') ? 'selected' : ''; ?>>Rejected</option>
+        </select>
+      </td>
+
+      <?php
         echo "<td><center><form action=showvisa.php target=_blank>
       <input name=id type=hidden value='".$row['vid']."'> <center><input type=image src=img/views.png alt=Submit width=25 height=13 style = margin-top:15px;></form></center></td>";
       
@@ -292,7 +301,16 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       //echo "<td>Residency Card (TIE/NIE)</td>";
       echo "<td>".$row['name']."</td>";
       echo "<td>".$row['rdate']."</td>";
-      echo "<td>".$row['status']."</td>";
+      ?>
+      <td>
+        <select class="status-dropdown" data-residency-id="<?php echo $row['resid']; ?>">
+          <option value="Pending" <?php echo ($row['status'] === 'Pending') ? 'selected' : ''; ?>>Pending</option>
+          <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
+          <option value="Rejected" <?php echo ($row['status'] === 'Rejected') ? 'selected' : ''; ?>>Rejected</option>
+        </select>
+      </td>
+
+      <?php
         echo "<td><center><form action=showresidency.php target=_blank>
       <input name=id type=hidden value='".$row['resid']."'> <center><input type=image src=img/views.png alt=Submit width=25 height=13 style = margin-top:15px;></form></center></td>";
       
@@ -402,7 +420,16 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       //echo "<td>Renewal Residency card (TIE/NIE)</td>";
       echo "<td>".$row['name']."</td>";
       echo "<td>".$row['rdate']."</td>";
-      echo "<td>".$row['status']."</td>";
+      ?>
+      <td>
+        <select class="status-dropdown" data-renewal-id="<?php echo $row['renid']; ?>">
+          <option value="Pending" <?php echo ($row['status'] === 'Pending') ? 'selected' : ''; ?>>Pending</option>
+          <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
+          <option value="Rejected" <?php echo ($row['status'] === 'Rejected') ? 'selected' : ''; ?>>Rejected</option>
+        </select>
+      </td>
+
+      <?php
         echo "<td><center><form action=showrenewal.php target=_blank>
       <input name=id type=hidden value='".$row['renid']."'> <center><input type=image src=img/views.png alt=Submit width=25 height=13 style = margin-top:15px;></form></center></td>";
       
@@ -511,7 +538,16 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       //echo "<td>Empadronamiento/Domiciliation</td>";
       echo "<td>".$row['name']."</td>";
       echo "<td>".$row['rdate']."</td>";
-      echo "<td>".$row['status']."</td>";
+      ?>
+      <td>
+        <select class="status-dropdown" data-domiciliation-id="<?php echo $row['did']; ?>">
+          <option value="Pending" <?php echo ($row['status'] === 'Pending') ? 'selected' : ''; ?>>Pending</option>
+          <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
+          <option value="Rejected" <?php echo ($row['status'] === 'Rejected') ? 'selected' : ''; ?>>Rejected</option>
+        </select>
+      </td>
+
+      <?php
       
       echo "<td><center><form action=showdom.php target=_blank>
       <input name=id type=hidden value='".$row['did']."'> <center><input type=image src=img/views.png alt=Submit width=25 height=13 style = margin-top:15px;></form></center></td>";
@@ -622,7 +658,16 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       echo "<td>".$row['name']."</td>";
       echo "<td>".$row['subject']."</td>";
       echo "<td>".$row['rdate']."</td>";
-      echo "<td>".$row['status']."</td>";
+      ?>
+      <td>
+        <select class="status-dropdown" data-other-id="<?php echo $row['lid']; ?>">
+          <option value="Pending" <?php echo ($row['status'] === 'Pending') ? 'selected' : ''; ?>>Pending</option>
+          <option value="Approved" <?php echo ($row['status'] === 'Approved') ? 'selected' : ''; ?>>Approved</option>
+          <option value="Rejected" <?php echo ($row['status'] === 'Rejected') ? 'selected' : ''; ?>>Rejected</option>
+        </select>
+      </td>
+
+      <?php
       
         echo "<td><center>
         <input type=image src=img/deletes.png data-toggle=modal data-target=#removeolModal data-whatever='".$row['lid']."' data-name='".$row['name']."'  width=30 height=30></center></td>";
@@ -860,7 +905,56 @@ $(document).ready(function() {
     } );
 } );
  </script>
+<script>
+  $(document).ready(function() {
+    // Handle change event of the status dropdown
+    $('.status-dropdown').on('change', function() {
+      // var researchid = 0;
+      // var instituteid = 0;
+      // var supportid = 0;
+      // var supportid = 0;
+    
+      var status = $(this).val();
+      var researchid = $(this).data('research-id') || 0;
+      var instituteid = $(this).data('institute-id') || 0;
+      var recongnitionid = $(this).data('recongnition-id') || 0;
+      var supportid = $(this).data('support-id') || 0; 
+      var visaid = $(this).data('visa-id') || 0;
+      var residencyid = $(this).data('residency-id') || 0;
+      var renewalid = $(this).data('renewal-id') || 0;
+      var domiciliationid = $(this).data('domiciliation-id') || 0; 
+      var otherid = $(this).data('other-id') || 0; 
+      
+      
 
+      // Reference to the current select element
+      var $select = $(this);
+
+      // Send an AJAX request to update the status
+      $.ajax({
+        url: 'actions/updateStatus.php', // Replace with your backend endpoint
+        method: 'POST',
+        data: { researchid: researchid, instituteid: instituteid, recongnitionid: recongnitionid, supportid: supportid, visaid: visaid, residencyid: residencyid, renewalid: renewalid, domiciliationid: domiciliationid, otherid: otherid, status: status },
+        success: function(response) {
+          // Parse the JSON response
+          var data = JSON.parse(response);
+
+          // Display a message based on the success status
+          if (data.success) {
+            alert(data.message);
+            // Optionally, update the selected option in the dropdown
+            // $select.val(status);
+          } else {
+            alert(data.message);
+          }
+        },
+        error: function(error) {
+          console.error('Error updating status:', error);
+        }
+      });
+    });
+  });
+</script>
 
 <?php
 }

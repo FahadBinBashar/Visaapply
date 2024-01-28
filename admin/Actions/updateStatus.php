@@ -7,6 +7,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $instituteid = $_POST['instituteid'];
   $recongnitionid = $_POST['recongnitionid'];
   $supportid = $_POST['supportid'];
+  $visaid = $_POST['visaid'];
+  $residencyid = $_POST['residencyid'];
+  $renewalid = $_POST['renewalid'];
+  $domiciliationid = $_POST['domiciliationid'];
+  $otherid = $_POST['otherid'];
   $status = $_POST['status'];
 
   if ($researchid != 0) {
@@ -21,6 +26,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   } else if ($supportid != 0) {
     // Update the status in the support table
     $sql = "UPDATE support SET status = '$status' WHERE sid = $supportid";
+  }else if ($visaid != 0) {
+    // Update the status in the support table
+    $sql = "UPDATE visa SET status = '$status' WHERE vid = $visaid";
+  }else if ($residencyid != 0) {
+    // Update the status in the support table
+    $sql = "UPDATE residency SET status = '$status' WHERE resid = $residencyid";
+  }else if ($renewalid != 0) {
+    // Update the status in the support table
+    $sql = "UPDATE renewal SET status = '$status' WHERE renid = $renewalid";
+  }else if ($domiciliationid != 0) {
+    // Update the status in the support table
+    $sql = "UPDATE domiciliation SET status = '$status' WHERE did = $domiciliationid";
+  }else if ($otherid != 0) {
+    // Update the status in the support table
+    $sql = "UPDATE otherlegal SET status = '$status' WHERE lid = $otherid";
   }
 
   if ($conn->query($sql) === TRUE) {
